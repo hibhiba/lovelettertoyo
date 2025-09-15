@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Envelope</title>
+<style>
+  body {
+    margin:0;
+    background: linear-gradient(135deg, pink, lightblue);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow-x:hidden;
+    overflow-y:auto;
+  }
+  /* Envelope */
+  .envelope {
+    width: 200px;
+    height: 140px;
+    background: #ff7eb9;
+    margin: 100px auto;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    touch-action: manipulation; /* helps taps register */
+  }
+  .envelope:before {
+    content:"";
+    position:absolute;
+    top:-70px;
+    left:0;
+    width:0;
+    height:0;
+    border-left:100px solid transparent;
+    border-right:100px solid transparent;
+    border-bottom:70px solid #ff7eb9;
+  }
+  .envelope:hover {
+    transform: scale(1.05);
+  }
+
+  /* Floating emojis */
+  .floating {
+    position:fixed;
+    font-size:40px;
+    animation: floatUp 3s ease forwards;
+    pointer-events:none;
+  }
+  @keyframes floatUp {
+    from {transform:translateY(100vh) scale(0.5); opacity:1;}
+    to {transform:translateY(-10vh) scale(1.5); opacity:0;}
+  }
+
+  /* Card */
+  .card{
+    width:100%;
+    max-width:820px;
+    border-radius:18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+    box-shadow: 0 12px 30px rgba(20,30,60,0.08);
+    padding:26px;
+    position:relative;
+    overflow:hidden;
+    margin:50px auto;
+    display:none; /* hidden until envelope clicked */
+  }
+  .dec{position:absolute; z-index:0; pointer-events:none;}
+  .teddy1{right:12px; top:8px; transform:rotate(-8deg); width:78px}
+  .teddy2{left:10px; bottom:12px; transform:rotate(6deg); width:64px}
+  .heart-decor{left:50%; transform:translateX(-50%); top:-22px; width:160px; opacity:0.14}
+  header{position:relative; z-index:2; display:flex; gap:14px; align-items:center}
+  .avatar{
+    width:72px; height:72px; border-radius:16px;
+    background: linear-gradient(135deg,#ff6fa3,#5cc8ff);
+    display:flex; align-items:center; justify-content:center;
+    color:white; font-weight:700; font-size:30px;
+    box-shadow: inset 0 -6px 18px rgba(0,0,0,0.04);
+  }
+  h1{margin:0;font-size:20px}
+  p.subtitle{margin:6px 0 0 0;color:#666;font-size:14px}
+  .message{
+    margin-top:18px;
+    font-size:16px;
+    line-height:1.6;
+    background: linear-gradient(90deg, rgba(92,200,255,0.03), rgba(255,111,170,0.02));
+    padding:18px;
+    border-radius:12px;
+    border: 1px solid rgba(0,0,0,0.03);
+    position:relative;
+    z-index:2;
+    white-space:pre-wrap;
+  }
+  .big-love{
+    margin-top:18px;
+    font-size:34px;
+    font-weight:700;
+    text-align:center;
+    letter-spacing:-1px;
+    background: linear-gradient(90deg, #5cc8ff, #ff6fa3, #ff2e63);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color:transparent;
+    z-index:2;
+  }
+  .signature{
+    margin-top:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    z-index:2;
+  }
+  .from{color:#444;font-weight:700}
+  .small-note{color:#666;font-size:13px}
+  .btns{display:flex; gap:10px}
+  .btn{
+    padding:10px 12px;
+    border-radius:10px;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+    background:#ff6fa3;
+    color:white;
+  }
+  .btn.blue{background:#5cc8ff}
+  .btn.red{background:#ff2e63}
+  @media (max-width:420px){
+    .card{padding:14px}
+    .big-love{font-size:28px}
+    .avatar{width:58px;height:58px;font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Envelope -->
+<div class="envelope" id="envelope"></div>
+
+<!-- Card -->
+<div class="card" id="card" role="article" aria-label="Cute love letter to Habibi">
+  <header>
+    <div class="avatar">❤</div>
+    <div>
+      <h1>For my Habibi</h1>
+      <p class="subtitle">Open this on your phone — a hug in a letter 🧸❤️</p>
+    </div>
+  </header>
+
+  <div class="message">
+Hey baby , you will do well there , baq fia lhal 3ala letter li dert u other stuff li swbt lik f dak enveloppe o i wish kun bqa lik dakshi but its okey , i just want to say lah y chafik , u ysabrak , i wish all the best nchallah f ay hajja  and  w me with you :) , be patient lah yrdi ealik u nachlah all this gonna pass u aybqa ghi memories. im here to support you in anything, u please do not overthink in bad way too much hit atkml eala rassek  ikn its hard ( ofc ana hia akhir wahda ngul not to overthink but mhm ) . 
+I miss you so bad , and i love you u know 
+Kissess ,  Hiba
+  </div>
+
+
+  <div class="signature">
+    <div>
+      <div class="from">— Your Hiba</div>
+      <div class="small-note">Sent with all my teddies 🧸 and hearts ❤️</div>
+    </div>
+    <div class="btns" aria-hidden="true">
+      <button class="btn blue" onclick="popHeart()">Send kiss</button>
+      <button class="btn red" onclick="popTeddy()">Hug</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const envelope=document.getElementById('envelope');
+const card=document.getElementById('card');
+
+function openEnvelope(){
+  envelope.style.display='none';
+  card.style.display='block';
+  // floating emojis
+  for(let i=0;i<15;i++){
+    setTimeout(popEmoji, i*300);
+  }
+}
+
+// Support both click and touch
+envelope.addEventListener('click', openEnvelope);
+envelope.addEventListener('touchstart', openEnvelope);
+
+function popEmoji(){
+  const em = document.createElement('div');
+  const emojis = ['❤️','💗','💖','🧸','🍒'];
+  em.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+  em.className='floating';
+  em.style.left=Math.random()*100+'vw';
+  em.style.top='100vh';
+  document.body.appendChild(em);
+  setTimeout(()=>em.remove(),3000);
+}
+
+function popHeart(){
+  const el = document.createElement('div');
+  el.textContent = '❤️';
+  stylePop(el);
+}
+function popTeddy(){
+  const el = document.createElement('div');
+  el.textContent = '🧸';
+  stylePop(el);
+}
+function stylePop(el){
+  el.style.position='fixed';
+  el.style.left='50%';
+  el.style.top='50%';
+  el.style.transform='translate(-50%,-50%) scale(1)';
+  el.style.fontSize='56px';
+  el.style.zIndex=9999;
+  el.style.pointerEvents='none';
+  document.body.appendChild(el);
+  el.animate([
+    { transform: 'translate(-50%,-50%) scale(1)', opacity:1 },
+    { transform: 'translate(-50%,-140%) scale(1.6)', opacity:0 }
+  ], { duration:900, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  setTimeout(()=>el.remove(),950);
+}
+</script>
+
+</body>
+</html>
